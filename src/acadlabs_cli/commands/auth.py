@@ -10,7 +10,12 @@ from rich.prompt import Prompt
 from acadlabs_cli.client.supabase import login_user, login_with_google, supabase
 
 console = Console()
-app = typer.Typer(name="auth", help="Authentication commands")
+app = typer.Typer(
+    name="auth",
+    help="Authentication & session management.",
+    invoke_without_command=True,
+    no_args_is_help=True,
+)
 
 
 @app.command(name="login-google")

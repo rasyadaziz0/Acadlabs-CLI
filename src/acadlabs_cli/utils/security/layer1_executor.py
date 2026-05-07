@@ -27,12 +27,12 @@ from acadlabs_cli.utils.security.layer3_parser import (
 from acadlabs_cli.utils.security.layer4_pathlock import (
     PathLocker,
     PathLockError,
-    path_locker,
+    path_locker as default_path_locker,
 )
 from acadlabs_cli.utils.security.layer5_docker import (
     DockerExecutor,
     ContainerizationError,
-    docker_executor,
+    docker_executor as default_docker_executor,
 )
 
 
@@ -65,8 +65,8 @@ class SecureExecutor:
         self.console = console or Console()
         self.whitelist = whitelist or command_whitelist
         self.parser = parser or command_parser
-        self.path_locker = path_locker or path_locker
-        self.docker_executor = docker_executor or docker_executor
+        self.path_locker = path_locker or default_path_locker
+        self.docker_executor = docker_executor or default_docker_executor
     
     def _confirm(self, operation: str, details: str, show_preview: bool = True) -> bool:
         """

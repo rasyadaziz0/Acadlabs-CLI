@@ -243,6 +243,13 @@ def login_with_google():
         try:
             chrome_path = None
             import subprocess
+            chrome_paths = [
+                "/usr/bin/google-chrome",
+                "/usr/bin/google-chrome-stable",
+                "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+            ]
             for path in chrome_paths:
                 if os.path.exists(path):
                     chrome_path = path

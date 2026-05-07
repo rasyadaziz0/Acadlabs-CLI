@@ -6,7 +6,12 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 console = Console()
-app = typer.Typer(name="config", help="Configuration commands")
+app = typer.Typer(
+    name="config",
+    help="Configuration management. Setup API keys, model, dan Supabase.",
+    invoke_without_command=True,
+    no_args_is_help=True,
+)
 
 CONFIG_DIR = Path.home() / ".acadlabs"
 CONFIG_FILE = CONFIG_DIR / "config.json"
