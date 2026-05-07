@@ -13,7 +13,7 @@ from rich.table import Table
 from rich import box
 
 from acadlabs_cli import __version__
-from acadlabs_cli.commands import auth_app, chat_app, config_app
+from acadlabs_cli.commands import auth_app, chat_app, config_app, update_cmd
 from acadlabs_cli import ui
 
 console = Console()
@@ -43,6 +43,7 @@ Shortcuts (langsung tanpa subcommand):
   acadlabs login                 = acadlabs auth login
   acadlabs login-google          = acadlabs auth login-google
   acadlabs chat                  = acadlabs chat start
+  acadlabs update                Update CLI ke versi terbaru
 
 \b
 Docs:   https://acadlabs.fun/docs
@@ -166,6 +167,12 @@ app.command(
     hidden=False,
 )(auth_status)
 
+app.command(
+    name="update",
+    help="Update AcadLabs CLI ke versi terbaru dari GitHub.",
+    hidden=False,
+)(update_cmd)
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 # Help Command (rich-formatted via ui module)
@@ -217,6 +224,10 @@ def show_help():
         ("Configuration", [
             ("acadlabs config init", "Setup konfigurasi awal"),
             ("acadlabs config show", "Lihat konfigurasi"),
+        ]),
+        ("Maintenance", [
+            ("acadlabs update", "Update CLI ke versi terbaru"),
+            ("acadlabs update --force", "Force reinstall"),
         ]),
     ]
 
